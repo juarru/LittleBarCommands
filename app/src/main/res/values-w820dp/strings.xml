@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="tablestitle">Mesas</string>
+    <string name="downloadError">Error en descarga</string>
+    <string name="downloadErrorText">Se ha producido un error mientras se realizaba la descarga</string>
 </resources>

@@ -22,7 +22,7 @@ import java.util.LinkedList;
 public class Menu {
 
     private static LinkedList<Dish> sDish = new LinkedList<>();
-    private static final String MENU_URL = "http://www.mocky.io/v2/58470e903f0000920efe6950";
+    private static final String MENU_URL = "http://www.mocky.io/v2/584d4a9c0f0000bd10d40f54";
 
     public Menu(LinkedList<Dish> sDish) {
         Menu.sDish = sDish;
@@ -52,40 +52,22 @@ public class Menu {
             JSONObject jsonRoot = new JSONObject(sb.toString());
             JSONArray menu = jsonRoot.getJSONArray("menu");
             for (int i = 0; i < menu.length(); i++) {
-                JSONObject currentCourse = menu.getJSONObject(i);
+                JSONObject currentDish = menu.getJSONObject(i);
 
-                int id = currentCourse.getInt("id");
-                String name = currentCourse.getString("name");
-                String description = currentCourse.getString("description");
-                String type = currentCourse.getString("type");
-                double price = currentCourse.getDouble("price");
-                JSONArray arrayAllergens = currentCourse.getJSONArray("allergens");
+                int id = currentDish.getInt("id");
+                String name = currentDish.getString("name");
+                String description = currentDish.getString("description");
+                String type = currentDish.getString("type");
+                double price = currentDish.getDouble("price");
+                JSONArray arrayAllergens = currentDish.getJSONArray("allergens");
                 ArrayList<String> allergens = new ArrayList<String>();
                 for (int j = 0; j < arrayAllergens.length(); j++) {
                     String currentAllergen = arrayAllergens.getString(j);
                     allergens.add(currentAllergen);
                 }
-                String imageURL = currentCourse.getString("image");
+                String image = currentDish.getString("image");
 
-                InputStream in = null;
-                Bitmap bmp = null;
-                try {
-                    in = new java.net.URL(imageURL).openStream();
-                    bmp = BitmapFactory.decodeStream(in);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                } finally {
-                    try {
-                        if (in != null) {
-                            in.close();
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-
-                Dish dish = new Dish(id, name, description, type, price, new URL(imageURL), "", allergens);
-                dish.setBitmap(bmp);
+                Dish dish = new Dish(id, name, description, type, price, image, "", allergens);
                 sDish.add(dish);
             }
 

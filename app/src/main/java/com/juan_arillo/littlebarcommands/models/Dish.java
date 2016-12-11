@@ -3,12 +3,8 @@ package com.juan_arillo.littlebarcommands.models;
 import android.graphics.Bitmap;
 
 import java.io.Serializable;
-import java.net.URL;
 import java.util.ArrayList;
 
-/**
- * Created by juan_arillo on 06/12/16.
- */
 
 public class Dish implements Serializable {
 
@@ -17,18 +13,18 @@ public class Dish implements Serializable {
     private String mDescription = null;
     private String mType = null;
     private double mPrice = 0;
-    private URL mImageURL = null;
+    private String mImage = "1";
     private String mWishList = null;
     private ArrayList<String> mAllergens = null;
     private Bitmap mBitmap;
 
-    public Dish(int idDish, String name, String description, String type, double price, URL imageURL, String wishList, ArrayList<String> allergens) {
+    public Dish(int idDish, String name, String description, String type, double price, String image, String wishList, ArrayList<String> allergens) {
         mIdDish = idDish;
         mName = name;
         mDescription = description;
         mType = type;
         mPrice = price;
-        mImageURL = imageURL;
+        mImage = image;
         mWishList = wishList;
         mAllergens = allergens;
     }
@@ -73,12 +69,12 @@ public class Dish implements Serializable {
         mPrice = price;
     }
 
-    public URL getImageURL() {
-        return mImageURL;
+    public String getImage() {
+        return mImage;
     }
 
-    public void setImageURL(URL imageURL) {
-        mImageURL = imageURL;
+    public void setImage(String image) {
+        mImage = image;
     }
 
     public String getWishList() {
@@ -95,14 +91,6 @@ public class Dish implements Serializable {
 
     public void setAllergens(ArrayList<String> allergens) {
         mAllergens = allergens;
-    }
-
-    public Bitmap getBitmap() {
-        return mBitmap;
-    }
-
-    public void setBitmap(Bitmap bitmap) {
-        mBitmap = bitmap;
     }
 
 }

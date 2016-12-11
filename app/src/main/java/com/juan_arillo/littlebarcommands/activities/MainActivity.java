@@ -14,6 +14,7 @@ import com.juan_arillo.littlebarcommands.R;
 import com.juan_arillo.littlebarcommands.fragments.TableListFragment;
 import com.juan_arillo.littlebarcommands.models.Menu;
 import com.juan_arillo.littlebarcommands.models.Table;
+import com.juan_arillo.littlebarcommands.utilities.BackgroundMenuDownloading;
 
 public class MainActivity extends AppCompatActivity implements TableListFragment.OnTableSelectedListener {
 
@@ -58,22 +59,22 @@ public class MainActivity extends AppCompatActivity implements TableListFragment
             }
         }
 
-        //this.downloadMenu();
+        this.downloadMenu();
 
     }
 
-    /*protected void downloadMenu() {
+    protected void downloadMenu() {
         if (Menu.getMenu().size() == 0) {
-            DownloadMenu downloadMenu = new DownloadMenu((ViewGroup) findViewById(R.id.activity_main), this);
+            BackgroundMenuDownloading downloadMenu = new BackgroundMenuDownloading((ViewGroup) findViewById(R.id.activity_main), this);
             downloadMenu.execute();
         }
-    }*/
+    }
 
     @Override
     public void onTableSelected(Table table, int position) {
-        /*Intent intent = new Intent(this, TableDetailActivity.class);
-        intent.putExtra(TableDetailActivity.TABLE_INDEX, position);
-        startActivity(intent);*/
+        Intent intent = new Intent(this, TableOrderActivity.class);
+        intent.putExtra(TableOrderActivity.TABLE_INDEX, position);
+        startActivity(intent);
 
     }
 }
