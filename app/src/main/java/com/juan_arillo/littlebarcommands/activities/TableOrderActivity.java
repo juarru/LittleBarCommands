@@ -1,6 +1,5 @@
 package com.juan_arillo.littlebarcommands.activities;
 
-import android.app.Activity;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;

@@ -1,9 +1,5 @@
 package com.juan_arillo.littlebarcommands.models;
 
-/**
- * Created by juan_arillo on 06/12/16.
- */
-
 public class Table {
 
     private int mIdTable = -1;

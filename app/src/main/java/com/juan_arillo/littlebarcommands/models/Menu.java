@@ -1,28 +1,19 @@
 package com.juan_arillo.littlebarcommands.models;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-/**
- * Created by juan_arillo on 06/12/16.
- */
-
 public class Menu {
 
     private static LinkedList<Dish> sDish = new LinkedList<>();
-    private static final String MENU_URL = "http://www.mocky.io/v2/584d4a9c0f0000bd10d40f54";
+    private static final String MENU_URL = "http://www.mocky.io/v2/584d6b9e0f00004714d40f74";
 
     public Menu(LinkedList<Dish> sDish) {
         Menu.sDish = sDish;
@@ -50,24 +41,23 @@ public class Menu {
             reader.close();
 
             JSONObject jsonRoot = new JSONObject(sb.toString());
-            JSONArray menu = jsonRoot.getJSONArray("menu");
-            for (int i = 0; i < menu.length(); i++) {
-                JSONObject currentDish = menu.getJSONObject(i);
+            JSONArray platos = jsonRoot.getJSONArray("platos");
+            for (int i = 0; i < platos.length(); i++) {
+                JSONObject currentDish = platos.getJSONObject(i);
 
                 int id = currentDish.getInt("id");
-                String name = currentDish.getString("name");
-                String description = currentDish.getString("description");
-                String type = currentDish.getString("type");
-                double price = currentDish.getDouble("price");
-                JSONArray arrayAllergens = currentDish.getJSONArray("allergens");
+                String name = currentDish.getString("nombre");
+                String description = currentDish.getString("descripcion");
+                double price = currentDish.getDouble("precio");
+                JSONArray arrayAllergens = currentDish.getJSONArray("alergenos");
                 ArrayList<String> allergens = new ArrayList<String>();
                 for (int j = 0; j < arrayAllergens.length(); j++) {
                     String currentAllergen = arrayAllergens.getString(j);
                     allergens.add(currentAllergen);
                 }
-                String image = currentDish.getString("image");
+                String image = currentDish.getString("imagen");
 
-                Dish dish = new Dish(id, name, description, type, price, image, "", allergens);
+                Dish dish = new Dish(id, name, description, price, image, "", allergens);
                 sDish.add(dish);
             }
 

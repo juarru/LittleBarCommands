@@ -1,6 +1,5 @@
 package com.juan_arillo.littlebarcommands.activities;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -22,8 +21,8 @@ public class DishActivity extends AppCompatActivity implements DishFragment.OnAd
     }
 
     @Override
-    public void onAddDishSelected(Dish dish, String extras, Table table) {
-        table.getOrder().addDish(dish, extras);
+    public void onAddDishSelected(Dish dish, Table table) {
+        table.getOrder().addDish(dish);
         finish();
     }
 }

@@ -2,9 +2,7 @@ package com.juan_arillo.littlebarcommands.fragments;
 
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,7 +12,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 
 import com.juan_arillo.littlebarcommands.R;
 import com.juan_arillo.littlebarcommands.activities.DishActivity;
@@ -61,27 +58,16 @@ public class DishFragment extends Fragment {
         list.setAdapter(new DishReciclerAdapter(Menu.getMenu(), new DishReciclerAdapter.OnDishSelectedListener() {
             @Override
             public void onDishSelected(final Dish dish) {
-                AlertDialog.Builder confirmDialog = new AlertDialog.Builder(getActivity());
-                final EditText input = new EditText(getActivity());
-                confirmDialog.setTitle(R.string.extras);
-                confirmDialog.setView(input);
-                confirmDialog.setMessage(R.string.extras_text);
-                confirmDialog.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String wishlist = input.getText().toString();
-                        mOnDishSelectedListener.onAddDishSelected(dish,wishlist, mTable);
-                        double amount = mTable.getTotal() + dish.getPrice();
-                        mTable.setTotal(amount);
-                    }
-                });
-                confirmDialog.show();
+                mOnDishSelectedListener.onAddDishSelected(dish,mTable);
+                double amount = mTable.getTotal() + dish.getPrice();
+                mTable.setTotal(amount);
             }
 
             @Override
             public void onDishLongSelected(Dish dish) {
             }
-        }));
+        }
+        ));
 
         return root;
     }
@@ -106,14 +92,14 @@ public class DishFragment extends Fragment {
 
     private void attachToActivity(Context context) {
         if (!(context instanceof OnAddDishSelectedListener)) {
-            throw new ClassCastException("Activity holding DishSelectorFragment should implement OnDishOrderSelectedListener");
+            throw new ClassCastException("Exception OnAddDishSelectedListener");
         }
 
         mOnDishSelectedListener = (OnAddDishSelectedListener) context;
     }
 
     public interface OnAddDishSelectedListener {
-        void onAddDishSelected(Dish dish, String wishlist, Table table);
+        void onAddDishSelected(Dish dish, Table table);
     }
 
 }

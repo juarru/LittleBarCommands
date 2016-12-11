@@ -2,10 +2,6 @@ package com.juan_arillo.littlebarcommands.models;
 
 import java.util.LinkedList;
 
-/**
- * Created by juan_arillo on 06/12/16.
- */
-
 public class Order {
 
     private int mIdOrder;
@@ -46,10 +42,8 @@ public class Order {
         mDishLinkedList = dishLinkedList;
     }
 
-    // Utility for adding dishes to the Order
-    public void addDish(Dish dish, String wishList) {
+    public void addDish(Dish dish){
         Dish newDish = dish;
-        newDish.setWishList(wishList);
         mDishLinkedList.push(newDish);
     }
 

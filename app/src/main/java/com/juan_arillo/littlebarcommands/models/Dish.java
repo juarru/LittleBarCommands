@@ -18,14 +18,12 @@ public class Dish implements Serializable {
     private ArrayList<String> mAllergens = null;
     private Bitmap mBitmap;
 
-    public Dish(int idDish, String name, String description, String type, double price, String image, String wishList, ArrayList<String> allergens) {
+    public Dish(int idDish, String name, String description, double price, String image, String wishList, ArrayList<String> allergens) {
         mIdDish = idDish;
         mName = name;
         mDescription = description;
-        mType = type;
         mPrice = price;
         mImage = image;
-        mWishList = wishList;
         mAllergens = allergens;
     }
 
@@ -53,14 +51,6 @@ public class Dish implements Serializable {
         mDescription = description;
     }
 
-    public String getType() {
-        return mType;
-    }
-
-    public void setType(String type) {
-        mType = type;
-    }
-
     public double getPrice() {
         return mPrice;
     }
@@ -75,14 +65,6 @@ public class Dish implements Serializable {
 
     public void setImage(String image) {
         mImage = image;
-    }
-
-    public String getWishList() {
-        return mWishList;
-    }
-
-    public void setWishList(String wishList) {
-        mWishList = wishList;
     }
 
     public ArrayList<String> getAllergens() {

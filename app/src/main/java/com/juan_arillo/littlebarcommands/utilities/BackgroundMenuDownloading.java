@@ -15,10 +15,6 @@ import com.juan_arillo.littlebarcommands.models.Menu;
 import java.lang.ref.WeakReference;
 import java.util.LinkedList;
 
-/**
- * Created by juan_arillo on 11/12/16.
- */
-
 public class BackgroundMenuDownloading extends AsyncTask<Void, Void, LinkedList<Dish>> {
 
     private ProgressDialog mProgressDialog;

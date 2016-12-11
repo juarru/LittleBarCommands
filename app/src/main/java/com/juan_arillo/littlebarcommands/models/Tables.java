@@ -2,10 +2,6 @@ package com.juan_arillo.littlebarcommands.models;
 
 import java.util.LinkedList;
 
-/**
- * Created by juan_arillo on 06/12/16.
- */
-
 public class Tables {
 
     private LinkedList<Table> mTables;

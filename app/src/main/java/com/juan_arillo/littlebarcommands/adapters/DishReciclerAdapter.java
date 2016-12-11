@@ -1,7 +1,5 @@
 package com.juan_arillo.littlebarcommands.adapters;
 
-import android.graphics.Bitmap;
-import android.os.AsyncTask;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,9 +16,6 @@ import java.util.LinkedList;
 
 import static com.juan_arillo.littlebarcommands.R.id.dish_image;
 
-/**
- * Created by juan_arillo on 09/12/16.
- */
 
 public class DishReciclerAdapter extends RecyclerView.Adapter<DishReciclerAdapter.DishViewHolder>{
 
@@ -50,13 +45,11 @@ public class DishReciclerAdapter extends RecyclerView.Adapter<DishReciclerAdapte
 
     public class DishViewHolder extends RecyclerView.ViewHolder{
         private Dish mDish;
-        private AsyncTask<Void, Void, Bitmap> mDownloadImageAsyncTask;
         private WeakReference<OnDishSelectedListener> mOnDishSelectedListener;
 
         private TextView mName;
         private TextView mPrice;
         private TextView mDescription;
-        private TextView mWishList;
         private ImageView mImage;
         private LinearLayout mLinearLayout;
 
@@ -68,7 +61,6 @@ public class DishReciclerAdapter extends RecyclerView.Adapter<DishReciclerAdapte
             mImage = (ImageView) itemView.findViewById(dish_image);
             mDescription = (TextView) itemView.findViewById(R.id.dish_description);
             mPrice = (TextView) itemView.findViewById(R.id.dish_price);
-            mWishList = (TextView) itemView.findViewById(R.id.dish_wishlist);
             mLinearLayout = (LinearLayout) itemView.findViewById(R.id.dish_allergens);
         }
 
@@ -100,7 +92,6 @@ public class DishReciclerAdapter extends RecyclerView.Adapter<DishReciclerAdapte
             }
 
             mPrice.setText(String.format("PRECIO: %.2f %s", dish.getPrice(), units));
-            mWishList.setText(dish.getWishList());
 
 
             String image = mDish.getImage();
