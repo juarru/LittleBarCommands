@@ -22,6 +22,7 @@ import com.juan_arillo.littlebarcommands.R;
 import com.juan_arillo.littlebarcommands.activities.TableOrderActivity;
 import com.juan_arillo.littlebarcommands.adapters.DishReciclerAdapter;
 import com.juan_arillo.littlebarcommands.models.Dish;
+import com.juan_arillo.littlebarcommands.models.Order;
 import com.juan_arillo.littlebarcommands.models.Table;
 import com.juan_arillo.littlebarcommands.models.Tables;
 
@@ -153,6 +154,10 @@ public class TableOrderFragment extends Fragment {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void showOrderTable (int position) {
+        mTable.setIdTable(position);
     }
 
 }

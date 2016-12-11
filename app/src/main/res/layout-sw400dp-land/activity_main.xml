@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar_main"></include>
+
+    <fragment
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/app_bar_layout"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:name="com.juan_arillo.littlebarcommands.fragments.TableListFragment"
+        tools:layout="@layout/fragment_table_list"
+        android:id="@+id/table_list_fragment">
+    </fragment>
+
+    <fragment
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_toRightOf="@id/table_list_fragment"
+        android:layout_below="@+id/app_bar_layout"
+        android:layout_alignParentBottom="true"
+        android:layout_height="match_parent"
+        android:name="com.juan_arillo.littlebarcommands.fragments.TableOrderFragment"
+        tools:layout="@layout/fragment_table_order"
+        android:id="@+id/fragment_table_order">
+    </fragment>
+
+</RelativeLayout>

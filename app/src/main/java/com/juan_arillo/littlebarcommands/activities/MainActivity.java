@@ -12,7 +12,9 @@ import android.view.ViewGroup;
 
 import com.juan_arillo.littlebarcommands.R;
 import com.juan_arillo.littlebarcommands.fragments.TableListFragment;
+import com.juan_arillo.littlebarcommands.fragments.TableOrderFragment;
 import com.juan_arillo.littlebarcommands.models.Menu;
+import com.juan_arillo.littlebarcommands.models.Order;
 import com.juan_arillo.littlebarcommands.models.Table;
 import com.juan_arillo.littlebarcommands.utilities.BackgroundMenuDownloading;
 
@@ -46,15 +48,25 @@ public class MainActivity extends AppCompatActivity implements TableListFragment
             actionBar.setTitle(R.string.tablestitle);
         }
 
-        // Cargamos a mano el fragment
+        // loading fragment
         FragmentManager fm = getFragmentManager();
 
-        // Preguntamos a ver si existe el hueco para TableList
+        // Asking for a place to TableList
         if (findViewById(R.id.table_list_fragment) != null) {
-            // Existe hueco, y habiendo hueco metemos el fragment de TableList
+            // There´s a place, we set TableList
             if (fm.findFragmentById(R.id.table_list_fragment) == null) {
                 fm.beginTransaction()
                         .add(R.id.table_list_fragment, new TableListFragment())
+                        .commit();
+            }
+        }
+
+        // Asking for a place to Table Order
+        if (findViewById(R.id.fragment_table_order) != null) {
+            // There´s a place, we set Table Order
+            if (fm.findFragmentById(R.id.fragment_table_order) == null) {
+                fm.beginTransaction()
+                        .add(R.id.fragment_table_order, new TableOrderFragment())
                         .commit();
             }
         }
@@ -72,9 +84,18 @@ public class MainActivity extends AppCompatActivity implements TableListFragment
 
     @Override
     public void onTableSelected(Table table, int position) {
-        Intent intent = new Intent(this, TableOrderActivity.class);
-        intent.putExtra(TableOrderActivity.TABLE_INDEX, position);
-        startActivity(intent);
 
+        FragmentManager fm = getFragmentManager();
+        TableOrderFragment tableOrderFragment = (TableOrderFragment) fm.findFragmentById(R.id.fragment_table_order);
+
+        if (tableOrderFragment != null){
+            // Move to another table
+            tableOrderFragment.showOrderTable(position);
+
+        } else {
+            Intent intent = new Intent(this, TableOrderActivity.class);
+            intent.putExtra(TableOrderActivity.TABLE_INDEX, position);
+            startActivity(intent);
+        }
     }
 }
